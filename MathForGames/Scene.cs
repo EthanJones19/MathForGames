@@ -7,6 +7,7 @@ namespace MathForGames
     class Scene
     {
         private Actor[] _actors;
+
         public Scene()
         {
             _actors = new Actor[0];
@@ -22,7 +23,7 @@ namespace MathForGames
                 appendedArray[i] = _actors[i];
             }
             //Set the last value in the new array to be the actor we want to add
-            appendedArray[_actors.Length + 1] = actor;
+            appendedArray[_actors.Length] = actor;
             //Set old array to hold values of the new array
             _actors = appendedArray;
         }
@@ -38,7 +39,7 @@ namespace MathForGames
             bool actorRemoved = false;
 
             //Create a new array wtih a size one less than our old array
-            Actor[] tempArray = new Actor[_actors.Length - 1];
+            Actor[] newArray = new Actor[_actors.Length - 1];
             //Create variable to access tempArray index
             int j = 0;
             //Copy values from the old array to the new array
@@ -48,7 +49,7 @@ namespace MathForGames
                 //add the value into the old array and increment j
                 if(i != index)
                 {
-                    tempArray[j] = _actors[i];
+                    newArray[j] = _actors[i];
                     j++;
                 }
                 else
@@ -58,7 +59,7 @@ namespace MathForGames
                 
             }
             //Set the old array to be the tempArray
-            _actors = tempArray;
+            _actors = newArray;
             return actorRemoved;
         }
 
@@ -69,9 +70,11 @@ namespace MathForGames
             {
                 return false;
             }
+
             bool actorRemoved = false;
 
             Actor[] newArray = new Actor[_actors.Length - 1];
+
             int j = 0;
 
             for(int i = 0; i < _actors.Length; i++)

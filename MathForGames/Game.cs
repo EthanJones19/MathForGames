@@ -8,42 +8,53 @@ namespace MathForGames
 {
     class Game
     {
-        private static bool gameOver = false;
+        private static bool _gameOver = false;
         private Scene _scene;
+
+        public static ConsoleColor DefaultColor { get; set; } = ConsoleColor.White;
 
         //Static function used to set game over without an instance of game.
         public static void SetGameOver(bool value)
         {
-            gameOver = value;
+            _gameOver = value;
         }
-
-
-
-
-
-
-
-
 
         //Return whether or not the specified ConsoleKey is pressed
-        public static bool CheckKey(ConsoleKey key)
+        //public static bool CheckKey(ConsoleKey key)
+        //{   //If the user has pressed a key
+            //if (Console.KeyAvailable)
+            //{   //Checks to see if the key pressed matches the argument given
+                //if (Console.ReadKey(true).Key == key)
+                //{
+                    //return true;
+                //}
+            //}
+            //return false;
+        //}
+
+        public static ConsoleKey GetNextKey()
         {
-            if (Console.KeyAvailable)
+            if(!Console.KeyAvailable)
             {
-                if (Console.ReadKey(true).Key == key)
-                {
-                    return true;
-                }
+                return 0;
             }
-            return false;
+            //Return the key that was pressed
+            return Console.ReadKey(true).Key;
         }
+
+
+
 
         //Called when the game begins. Use this for initialization.
         public void Start()
         {
+            Console.CursorVisible = false;
             _scene = new Scene();
-            Actor actor = new Actor();
+            Actor actor = new Actor(0,0, '■', ConsoleColor.Green);
+            actor.Velocity.X = 1;
+            Player player = new Player(0, 1, '@', ConsoleColor.Red);
             _scene.AddActor(actor);
+            _scene.AddActor(player);
         }
 
 
@@ -73,15 +84,14 @@ namespace MathForGames
         {
             Start();
 
-            while(gameOver == false)
+            while(!_gameOver)
             {
                 Update();
                 Draw();
                 while (Console.KeyAvailable)
                     Console.ReadKey(true);
-                Thread.Sleep(250);
+                Thread.Sleep(150);
             }
-
 
             End();
         }
