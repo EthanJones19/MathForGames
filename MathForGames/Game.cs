@@ -53,8 +53,17 @@ namespace MathForGames
             Actor actor = new Actor(0,0, '■', ConsoleColor.Green);
             actor.Velocity.X = 1;
             Player player = new Player(0, 1, '@', ConsoleColor.Red);
+            Player player2 = new Player(1, 0, '@', ConsoleColor.Green);
+            //Player player3 = new Player()
+            Wall wall = new Wall(0, 2, '■', ConsoleColor.Yellow);
+            Wall wall2 = new Wall(0, 3, '═', ConsoleColor.Yellow);
+            Wall wall3 = new Wall(1, 1, '■', ConsoleColor.Blue);
             _scene.AddActor(actor);
             _scene.AddActor(player);
+            _scene.AddActor(wall);
+            _scene.AddActor(wall2);
+            _scene.AddActor(wall3);
+            _scene.AddActor(player2);
         }
 
 
