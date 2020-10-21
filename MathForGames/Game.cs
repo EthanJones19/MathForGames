@@ -12,8 +12,15 @@ namespace MathForGames
         private static bool _gameOver = false;
         private static Scene[] _scenes;
         private static int _currentSceneIndex;
-
         public static ConsoleColor DefaultColor { get; set; } = ConsoleColor.White;
+
+        public static int CurrentSceneIndex
+        {
+            get
+            {
+                return _currentSceneIndex;
+            }
+        }
 
         //Static function used to set game over without an instance of game.
         public static void SetGameOver(bool value)
@@ -25,6 +32,14 @@ namespace MathForGames
         {
             return _scenes[index];
         }
+
+        public static Scene GetCurrentScene()
+        {
+            return _scenes[_currentSceneIndex];
+        }
+
+
+
 
         public static int AddScene(Scene scene)
         {
@@ -41,6 +56,17 @@ namespace MathForGames
 
             return index;
         }
+
+        public static bool GetKeyDown(int key)
+        {
+            return Raylib.IsKeyDown((KeyboardKey)key);
+        }
+
+        public static bool GetKeyPressed(int key)
+        {
+            return Raylib.IsKeyPressed((KeyboardKey)key);
+        }
+
 
         public static bool RemoveScene(Scene scene)
         {
@@ -126,25 +152,30 @@ namespace MathForGames
             Console.Title = "Math For Games";
 
             //Create a new scene for our actors to exist in
-            Scene scene = new Scene();
+            Scene scene1 = new Scene();
+            Scene scene2 = new Scene();
 
             //Creates two actors to add to our scene
             Actor actor = new Actor(0,0,Color.GREEN, '■', ConsoleColor.Green);
             actor.Velocity.X = 1;
-            Player player = new Player(0,1, '@', ConsoleColor.Red);
+            Player player = new Player(0,1,Color.RED, '@', ConsoleColor.Red);
             //Player player3 = new Player()
             Wall wall = new Wall(0, 2, '■', ConsoleColor.Yellow);
             Wall wall2 = new Wall(0, 3, '═', ConsoleColor.Yellow);
             Wall wall3 = new Wall(1, 1, '■', ConsoleColor.Blue);
-            scene.AddActor(actor);
-            scene.AddActor(player);
-            scene.AddActor(wall);
-            scene.AddActor(wall2);
-            scene.AddActor(wall3);
+            scene1.AddActor(actor);
+            scene1.AddActor(player);
+            player.Speed = 5;
 
             int startingSceneIndex = 0;
 
-            startingSceneIndex = AddScene(scene);
+            scene1.AddActor(wall);
+            scene1.AddActor(wall2);
+            scene1.AddActor(wall3);
+            
+
+            startingSceneIndex = AddScene(scene1);
+            AddScene(scene2);
 
             SetCurrentScene(startingSceneIndex);
 
@@ -152,12 +183,12 @@ namespace MathForGames
 
 
         //Called every frame.
-        public void Update()
+        public void Update(float deltaTime)
         {
             if (!_scenes[_currentSceneIndex].Started)
                 _scenes[_currentSceneIndex].Start();
 
-            _scenes[_currentSceneIndex].Update();
+            _scenes[_currentSceneIndex].Update(deltaTime);
         }
 
         //Used to display objects and other info on the screen.
@@ -167,7 +198,7 @@ namespace MathForGames
 
             Raylib.ClearBackground(Color.BLUE);
             Console.Clear();
-            _scenes[_currentSceneIndex].Draw();
+            //_scenes[_currentSceneIndex].Draw();
 
             Raylib.EndDrawing();
         }
@@ -176,7 +207,6 @@ namespace MathForGames
         //Called when the game ends.
         public void End()
         {
-            if (!_scenes[_currentSceneIndex].Started)
                 _scenes[_currentSceneIndex].End();
         }
 
@@ -188,11 +218,11 @@ namespace MathForGames
 
             while(!_gameOver &&  !Raylib.WindowShouldClose())
             {
-                Update();
+                float deltaTime = Raylib.GetFrameTime();
+                Update(deltaTime);
                 Draw();
                 while (Console.KeyAvailable)
                     Console.ReadKey(true);
-                Thread.Sleep(150);
             }
 
             End();

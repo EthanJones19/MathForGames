@@ -108,26 +108,26 @@ namespace MathForGames
            
         
 
-        public virtual void Update()
+        public virtual void Update(float deltaTime)
         {
             for (int i = 0; i < _actors.Length; i++)
             {
                 if (!_actors[i].Started)
                     _actors[i].Start();
 
-                _actors[i].Update();
+                _actors[i].Update(deltaTime);
             }
         }
            
         
 
-        public virtual void Draw()
+        /*public virtual void Draw()
         {
              for (int i = 0; i < _actors.Length; i++)
              {
                 _actors[i].Draw();
              }
-        }
+        }*/
         
         public virtual void End()
         {
