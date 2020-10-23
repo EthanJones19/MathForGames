@@ -39,8 +39,6 @@ namespace MathForGames
         }
 
 
-
-
         public static int AddScene(Scene scene)
         {
             Scene[] tempArray = new Scene[_scenes.Length + 1];
@@ -158,13 +156,19 @@ namespace MathForGames
             //Creates two actors to add to our scene
             Actor actor = new Actor(0,0,Color.GREEN, '■', ConsoleColor.Green);
             actor.Velocity.X = 1;
+
+            Enemy enemy = new Enemy(10, 10, Color.GREEN, '■', ConsoleColor.Green);
+
             Player player = new Player(0,1,Color.RED, '@', ConsoleColor.Red);
+            enemy.Target = player;
+
             //Player player3 = new Player()
             Wall wall = new Wall(0, 2, '■', ConsoleColor.Yellow);
             Wall wall2 = new Wall(0, 3, '═', ConsoleColor.Yellow);
             Wall wall3 = new Wall(1, 1, '■', ConsoleColor.Blue);
             scene1.AddActor(actor);
             scene1.AddActor(player);
+            scene1.AddActor(enemy);
             player.Speed = 5;
 
             int startingSceneIndex = 0;
@@ -198,7 +202,7 @@ namespace MathForGames
 
             Raylib.ClearBackground(Color.BLUE);
             Console.Clear();
-            //_scenes[_currentSceneIndex].Draw();
+            _scenes[_currentSceneIndex].Draw();
 
             Raylib.EndDrawing();
         }
@@ -207,6 +211,7 @@ namespace MathForGames
         //Called when the game ends.
         public void End()
         {
+            if (_scenes[_currentSceneIndex].Started)
                 _scenes[_currentSceneIndex].End();
         }
 

@@ -48,35 +48,5 @@ namespace MathForGames
             base.Update(deltaTime);
         }
 
-
-
-        /*public override void Update()
-        {
-            ConsoleKey keyPressed = Game.GetNextKey();
-
-            switch (keyPressed)
-            {
-                case ConsoleKey.A:
-                    _velocity.X = -1;
-                    break;
-                case ConsoleKey.D:
-                    _velocity.X = 1;
-                    break;
-                case ConsoleKey.W:
-                    _velocity.Y = -1;
-                    break;
-                case ConsoleKey.S:
-                    _velocity.Y = 1;
-                    break;
-                case ConsoleKey.Spacebar:
-                    Game.SetCurrentScene(1);
-                    break;
-                default:
-                    _velocity.X = 0;
-                    _velocity.Y = 0;
-                    break;
-            }
-            base.Update();
-        }*/
     }
 }

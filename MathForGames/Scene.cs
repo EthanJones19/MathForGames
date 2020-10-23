@@ -121,23 +121,30 @@ namespace MathForGames
            
         
 
-        /*public virtual void Draw()
+        public virtual void Draw()
         {
              for (int i = 0; i < _actors.Length; i++)
              {
                 _actors[i].Draw();
              }
-        }*/
+        }
         
         public virtual void End()
         {
+            for (int i = 0; i < _actors.Length; i++)
+            {
+                if (_actors[i].Started)
+                    _actors[i].End();
+            }
             Started = false;
+
         }
-          
-        
+
+
+
 
 
     }
 
-    
+
 }
