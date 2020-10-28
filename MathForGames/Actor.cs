@@ -23,7 +23,7 @@ namespace MathForGames
             set { _facing = value; }
         }
 
-
+        //
         public Vector2 Position
         {
             get
