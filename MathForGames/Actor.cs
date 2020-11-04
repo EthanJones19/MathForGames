@@ -135,11 +135,21 @@ namespace MathForGames
 
         public void SetRotation(float radians)
         {
+            _rotationAngle = radians;
             _rotation.m11 = (float)Math.Cos(radians);
-            _rotation.m21 = (float)Math.Sin(radians);
-            _rotation.m12 = -(float)Math.Sin(radians);
+            _rotation.m21 = -(float)Math.Sin(radians);
+            _rotation.m12 = (float)Math.Sin(radians);
             _rotation.m22 = (float)Math.Cos(radians);
         }
+
+        public void Rotate(float radians)
+        {
+            _rotationAngle += radians;
+            SetRotation(_rotationAngle);
+        }
+
+
+
 
         public void SetScale(float x, float y)
         {
