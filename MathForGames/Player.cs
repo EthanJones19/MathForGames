@@ -44,7 +44,7 @@ namespace MathForGames
             int yVelocity = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_W)) +
                     Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_S));
 
-            Velocity = new Vector2(xVelocity, yVelocity);
+            Velocity = new Vector2(xDirection, yDirection);
             Velocity = Velocity.Normalized * Speed;
 
             base.Update(deltaTime);
@@ -52,7 +52,7 @@ namespace MathForGames
 
         public override void Draw()
         {
-            //_sprite.Draw(_transform);
+            _sprite.Draw(_localTransform);
             base.Draw();
         }
 

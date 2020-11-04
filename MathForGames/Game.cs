@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Numerics;
 using System.Text;
 using System.Threading;
 using Raylib_cs;
@@ -161,7 +162,8 @@ namespace MathForGames
 
             Player player = new Player(0,1,Color.RED, '@', ConsoleColor.Red);
             enemy.Target = player;
-
+            player.SetTranslation(new Vector2(10, 10));
+            player.SetScale(1, 6);
             //Player player3 = new Player()
             Wall wall = new Wall(0, 2, '■', ConsoleColor.Yellow);
             Wall wall2 = new Wall(0, 3, '═', ConsoleColor.Yellow);
