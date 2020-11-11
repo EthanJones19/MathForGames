@@ -12,7 +12,7 @@ namespace MathForGames
         protected char _icon = ' ';
         protected Matrix3 _localTransform;
         protected Vector2 _velocity;
-        protected Matrix3 _globalTransform;
+        protected Matrix3 _globalTransform = new Matrix3();
         protected Matrix3 _translation = new Matrix3();
         protected Matrix3 _rotation = new Matrix3();
         protected Matrix3 _scale = new Matrix3();
@@ -29,11 +29,11 @@ namespace MathForGames
         {
             get
             {
-                return new Vector2(_localTransform.m11, _localTransform.m21);
+                return new Vector2(_globalTransform.m11, _globalTransform.m21);
             }
             set
             {
-                Vector2 lookPosition = LocalPosition + value.Normalized;
+                Vector2 lookPosition = WorldTransform + value.Normalized;
                 LookAt(lookPosition);
             }
         }
@@ -47,7 +47,7 @@ namespace MathForGames
         }
 
         
-        public Vector2 LocalPosition
+        public Vector2 WorldTransform
         {
             get
             {
@@ -77,7 +77,7 @@ namespace MathForGames
             _raycolor = Color.WHITE;
             _icon = icon;
             _localTransform = new Matrix3();
-            LocalPosition = new Vector2(x, y);
+            WorldTransform = new Vector2(x, y);
             _velocity = new Vector2();
             _color = color;
         }
@@ -136,28 +136,22 @@ namespace MathForGames
 
         public void SetTranslation(Vector2 position)
         {
-            _translation.m13 = position.X;
-            _translation.m23 = position.Y;
+            _translation = Matrix3.CreateTranslation(position);
         }
 
         public void SetRotation(float radians)
         {
-            _rotationAngle = radians;
-            _rotation.m11 = (float)Math.Cos(radians);
-            _rotation.m21 = -(float)Math.Sin(radians);
-            _rotation.m12 = (float)Math.Sin(radians);
-            _rotation.m22 = (float)Math.Cos(radians);
+            _rotation = Matrix3.CreateTranslation(radians);
         }
 
         public void Rotate(float radians)
         {
-            _rotationAngle += radians;
-            SetRotation(_rotationAngle);
+            _rotation *= Matrix3.CreateRotation(radians);
         }
 
         public void LookAt(Vector2 position)
         {
-            Vector2 direction = (position - LocalPosition).Normalized;
+            Vector2 direction = (position - WorldTransform).Normalized;
 
             float dotProd = Vector2.DotProduct(Forward, direction);
             if (Math.Abs(dotProd) > 1)
@@ -186,13 +180,17 @@ namespace MathForGames
 
         public void SetScale(float x, float y)
         {
-            _scale.m11 = x;
-            _scale.m22 = y;
+            _scale = Matrix3.CreateScale(new Vector2)
         }
 
         private void UpdateTransform()
         {
             _localTransform = _translation * _rotation * _scale;
+
+            if (_parent != null)
+                _globalTransform = _parent._globalTransform * _localTransform;
+            else
+                _globalTransform = Game.GetCurrentScene().World * _localTransform;
         }
 
 
@@ -218,18 +216,18 @@ namespace MathForGames
         public virtual void Draw()
         {
             Raylib.DrawLine(
-                (int)(LocalPosition.X * 32),
-                (int)(LocalPosition.Y * 32), 
-                (int)((LocalPosition.X + Forward.X) * 32), 
-                (int)((LocalPosition.Y + Forward.Y) * 32), 
+                (int)(WorldTransform.X * 32),
+                (int)(WorldTransform.Y * 32), 
+                (int)((WorldTransform.X + Forward.X) * 32), 
+                (int)((WorldTransform.Y + Forward.Y) * 32), 
                 Color.WHITE
                 );
             Console.ForegroundColor = _color;
 
-            if(LocalPosition.X >= 0 && LocalPosition.X < Console.WindowWidth
-                && LocalPosition.Y >= 0 && LocalPosition.Y < Console.WindowHeight)
+            if(WorldTransform.X >= 0 && WorldTransform.X < Console.WindowWidth
+                && WorldTransform.Y >= 0 && WorldTransform.Y < Console.WindowHeight)
             {
-                Console.SetCursorPosition((int)LocalPosition.X, (int)LocalPosition.Y);
+                Console.SetCursorPosition((int)WorldTransform.X, (int)WorldTransform.Y);
                 Console.Write(_icon);
             }
 
