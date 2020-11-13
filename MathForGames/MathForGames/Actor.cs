@@ -85,6 +85,7 @@ namespace MathForGames
         public Actor(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White) 
             : this(x,y,icon,color)
         {
+            _localTransform = new Matrix3();
             _raycolor = rayColor;
         }
 
@@ -141,7 +142,7 @@ namespace MathForGames
 
         public void SetRotation(float radians)
         {
-            _rotation = Matrix3.CreateTranslation(radians);
+            _rotation = Matrix3.CreateRotation(radians);
         }
 
         public void Rotate(float radians)
@@ -180,7 +181,7 @@ namespace MathForGames
 
         public void SetScale(float x, float y)
         {
-            _scale = Matrix3.CreateScale(new Vector2)
+            _scale = Matrix3.CreateScale(new Vector2);
         }
 
         private void UpdateTransform()

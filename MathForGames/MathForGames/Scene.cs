@@ -108,13 +108,16 @@ namespace MathForGames
             return actorRemoved;
         }
 
+        private void CheckCollision()
+        {
+
+        }
+        
         public virtual void Start()
         {
            Started = true;
         }
-           
-        
-
+             
         public virtual void Update(float deltaTime)
         {
             for (int i = 0; i < _actors.Length; i++)
@@ -124,10 +127,9 @@ namespace MathForGames
 
                 _actors[i].Update(deltaTime);
             }
+            CheckCollision();
         }
-           
-        
-
+                   
         public virtual void Draw()
         {
              for (int i = 0; i < _actors.Length; i++)

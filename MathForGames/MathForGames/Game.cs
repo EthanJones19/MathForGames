@@ -129,17 +129,7 @@ namespace MathForGames
             //return false;
         //}
 
-        public static ConsoleKey GetNextKey()
-        {
-            if(!Console.KeyAvailable)
-            {
-                return 0;
-            }
-            //Return the key that was pressed
-            return Console.ReadKey(true).Key;
-        }
-
-        public Game()
+              public Game()
         {
             _scenes = new Scene[0];
         }
@@ -163,12 +153,11 @@ namespace MathForGames
             //Creates two actors to add to our scene
             Actor actor = new Actor(0,0,Color.GREEN, '■', ConsoleColor.Green);
             actor.Velocity.X = 1;
-
             Enemy enemy = new Enemy(10, 10, Color.GREEN, '■', ConsoleColor.Green);
-
             Player player = new Player(0,1,Color.RED, '@', ConsoleColor.Red);
+            actor.Velocity.X = 1;
             enemy.Target = player;
-            enemy.SetTranslation(new Vector2)
+            enemy.SetTranslation(new Vector2(5, 0));
             player.SetTranslation(new Vector2(10, 10));
             player.AddChild(enemy);
             player.SetScale(1, 6);
