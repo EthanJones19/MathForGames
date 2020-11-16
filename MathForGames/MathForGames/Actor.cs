@@ -181,7 +181,7 @@ namespace MathForGames
 
         public void SetScale(float x, float y)
         {
-            _scale = Matrix3.CreateScale(new Vector2);
+            //_scale = Matrix3.CreateScale(new Vector2);
         }
 
         private void UpdateTransform()

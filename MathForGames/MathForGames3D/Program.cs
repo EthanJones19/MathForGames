@@ -1,5 +1,4 @@
 ﻿using System;
-using UnitTestProject;
 namespace MathForGames3D
 {
     class Program
