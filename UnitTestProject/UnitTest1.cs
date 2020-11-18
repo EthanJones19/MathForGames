@@ -23,7 +23,8 @@ namespace UnitTestProject
                 (
                     mat.m11, mat.m21, mat.m31, mat.m41,
                     mat.m12, mat.m22, mat.m32, mat.m42,
-                    mat.m13, mat.m23, mat.m33, mat.m43
+                    mat.m13, mat.m23, mat.m33, mat.m43,
+                    mat.m14, mat.m24, mat.m34, mat.m44
                     
                 );
         }
@@ -86,7 +87,7 @@ namespace UnitTestProject
         [TestMethod]
         public void Vector4Addition()
         {
-            Vector4 v4a = new Vector4(13.5f, -48.23f, 862, 0, 0);
+            Vector4 v4a = new Vector4(13.5f, -48.23f, 862, 0);
             Vector4 v4b = new Vector4(5, 3.99f, -12, 1);
             Vector4 v4c = v4a + v4b;
 
@@ -134,7 +135,7 @@ namespace UnitTestProject
         [TestMethod]
         public void Vector3PreScale()
         {
-            Vector3 v3a = new Vector3(13.5f, -48.23f, 862);
+            Vector3  v3a = new Vector3(13.5f, -48.23f, 862);
             Vector3 v3c = 0.256f * v3a;
 
             Assert.IsTrue(compare(new Vector3(3.45600008965f, -12.3468809128f, 220.672012329f), v3c));
@@ -316,7 +317,7 @@ namespace UnitTestProject
             Matrix3 m4d = Transpose(m3b * m3c);
 
             Assert.IsTrue(compare(m4d,
-                new Matrix3(1, 0, 0, 0, 1, 0, 5, 18, 1)));
+                new Matrix3(1, 0, 0, 0, 1, 0, 5, 15, 1)));
         }
 
         [TestMethod]
