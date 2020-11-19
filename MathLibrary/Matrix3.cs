@@ -13,7 +13,7 @@ namespace MathLibrary
         {
             m11 = 1; m12 = 0; m13 = 0;
             m21 = 0; m22 = 1; m23 = 0;
-            m31 = 0; m32 = 0; m33 = 0;
+            m31 = 0; m32 = 0; m33 = 1;
         }
 
         public Matrix3(float m11, float m12, float m13,
@@ -31,7 +31,7 @@ namespace MathLibrary
                 (
                     lhs.m11 + rhs.m11, lhs.m12 + rhs.m12, lhs.m13 + rhs.m13,
                     lhs.m21 + rhs.m21, lhs.m22 + rhs.m22, lhs.m23 + rhs.m23,
-                    lhs.m31 + rhs.m31, lhs.m32 + rhs.m32, lhs.m32 + rhs.m33
+                    lhs.m31 + rhs.m31, lhs.m32 + rhs.m32, lhs.m33 + rhs.m33
                 );
 
         }
@@ -50,8 +50,8 @@ namespace MathLibrary
         {
             return new Matrix3
                 (
-                    0, 0, position.X,
-                    0, 0, position.Y,
+                    1, 0, position.X,
+                    0, 1, position.Y,
                     0, 0, 1
                 );
         }
@@ -74,7 +74,7 @@ namespace MathLibrary
                 (
                     lhs.m11 - rhs.m11, lhs.m12 - rhs.m12, lhs.m13 - rhs.m13,
                     lhs.m21 - rhs.m21, lhs.m22 - rhs.m22, lhs.m23 - rhs.m23,
-                    lhs.m31 - rhs.m31, lhs.m32 - rhs.m32, lhs.m32 - rhs.m33
+                    lhs.m31 - rhs.m31, lhs.m32 - rhs.m32, lhs.m33 - rhs.m33
                 );
 
         }
@@ -84,31 +84,34 @@ namespace MathLibrary
             return new Matrix3
                 (
                     //Row1, Column1
-                    lhs.m11 * rhs.m11 + lhs.m12 * rhs.m21 + lhs.m13 * rhs.m31,
+                    (lhs.m11 * rhs.m11) + (lhs.m12 * rhs.m21) + (lhs.m13 * rhs.m31),
                     //Row2, Column2
-                    lhs.m11 * rhs.m12 + lhs.m12 * rhs.m22 + lhs.m13 * rhs.m32,
+                    (lhs.m11 * rhs.m12) + (lhs.m12 * rhs.m22) + (lhs.m13 * rhs.m32),
                     //Row3, Column3
-                    lhs.m11 * rhs.m13 + lhs.m12 * rhs.m23 + lhs.m13 * rhs.m33,
+                    (lhs.m11 * rhs.m13) + (lhs.m12 * rhs.m23) + (lhs.m13 * rhs.m33),
 
                     //Row2, Column1
-                    lhs.m21 * rhs.m11 + lhs.m22 * rhs.m21 + lhs.m23 * rhs.m31,
+                    (lhs.m21 * rhs.m11) + (lhs.m22 * rhs.m21) + (lhs.m23 * rhs.m31),
                     //Row2, Column2
-                    lhs.m21 * rhs.m12 + lhs.m22 * rhs.m22 + lhs.m23 * rhs.m32,
+                    (lhs.m21 * rhs.m12) + (lhs.m22 * rhs.m22) + (lhs.m23 * rhs.m32),
                     //Row2, Colume3
-                    lhs.m21 * rhs.m13 + lhs.m22 * rhs.m23 + lhs.m23 * rhs.m33,
+                    (lhs.m21 * rhs.m13) + (lhs.m22 * rhs.m23) + (lhs.m23 * rhs.m33),
 
                     //Row3, Column1
-                    lhs.m31 * rhs.m11 + lhs.m32 * rhs.m21 + lhs.m33 * rhs.m31,
+                    (lhs.m31 * rhs.m11) + (lhs.m32 * rhs.m21) + (lhs.m33 * rhs.m31),
                     //Row3, Column2
-                    lhs.m31 * rhs.m12 + lhs.m32 * rhs.m22 + lhs.m33 * rhs.m32,
+                    (lhs.m31 * rhs.m12) + (lhs.m32 * rhs.m22) + (lhs.m33 * rhs.m32),
                     //Row3, Column3
-                    lhs.m31 * rhs.m13 + lhs.m32 * rhs.m23 + lhs.m33 * rhs.m33
+                    (lhs.m31 * rhs.m13) + (lhs.m32 * rhs.m23) + (lhs.m33 * rhs.m33)
                 );
         }
 
-        public static Vector3 operator *(Matrix3 lhs, Vector3 rhs)
+        public static Vector3 operator *(Matrix3 matrix, Vector3 vector)
         {
-            return new Vector3();
+            return new Vector3(matrix.m11 * vector.X + matrix.m12 * vector.Y + matrix.m13 * vector.Z,
+                              matrix.m21 * vector.X + matrix.m22 * vector.Y + matrix.m23 * vector.Z,
+                              matrix.m31 * vector.X + matrix.m32 * vector.Y + matrix.m33 * vector.Z
+                              );
         }
 
 

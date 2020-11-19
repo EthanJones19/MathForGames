@@ -317,7 +317,7 @@ namespace UnitTestProject
             Matrix3 m4d = Transpose(m3b * m3c);
 
             Assert.IsTrue(compare(m4d,
-                new Matrix3(1, 0, 0, 0, 1, 0, 5, 15, 1)));
+                new Matrix3(1, 0, 0, 0, 1, 0, 5, 18, 1)));
         }
 
         [TestMethod]
