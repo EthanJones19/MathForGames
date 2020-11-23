@@ -296,10 +296,10 @@ namespace MathForGames3D
             switch (_shape)
             {
                 case Shape.SPHERE:
-                    Raylib.DrawSphere(new System.Numerics.Vector3(WorldPosition.X, WorldPosition.Y, WorldPosition.Z), 5, _rayColor);
+                    Raylib.DrawSphere(new System.Numerics.Vector3(WorldPosition.X, WorldPosition.Y, WorldPosition.Z), 4, _rayColor);
                     break;
                 case Shape.CUBE:
-                    Raylib.DrawCube(new System.Numerics.Vector3(WorldPosition.X, WorldPosition.Y, WorldPosition.Z), 5, 5, 5, _rayColor);
+                    Raylib.DrawCube(new System.Numerics.Vector3(WorldPosition.X, WorldPosition.Y, WorldPosition.Z), 9, 2, 2, _rayColor);
                     break;
             }
         }
@@ -308,10 +308,10 @@ namespace MathForGames3D
         {
 
             Raylib.DrawLine(
-                (int)(WorldPosition.X * 32),
-                (int)(WorldPosition.Y * 32),
-                (int)((WorldPosition.X + Forward.X) * 32),
-                (int)((WorldPosition.Y + Forward.Y) * 32),
+                (int)(WorldPosition.X * 60),
+                (int)(WorldPosition.Y * 60),
+                (int)((WorldPosition.X + Forward.X) * 60),
+                (int)((WorldPosition.Y + Forward.Y) * 60),
                 Color.WHITE
             );
             Console.ForegroundColor = _color;

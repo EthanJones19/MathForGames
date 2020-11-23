@@ -117,7 +117,7 @@ namespace MathForGames3D
             _camera.fovy = 45.0f;
             _camera.type = CameraType.CAMERA_PERSPECTIVE;
             Actor actor = new Actor(0, 0, 0, Color.BLUE, Shape.SPHERE, 5);
-            Actor actor1 = new Actor(4, 0, 0, Color.RED, Shape.CUBE, 5);
+            Actor actor1 = new Actor(3, 0, 0, Color.RED, Shape.CUBE, 5);
             Scene scene = new Scene();
             scene.AddActor(actor);
             scene.AddActor(actor1);
