@@ -6,7 +6,9 @@ namespace MathForGames2D
     {
         static void Main(string[] args)
         {
-            
+            Game game = new Game();
+
+            game.Run();
         }
     }
 }
