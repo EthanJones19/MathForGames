@@ -38,17 +38,46 @@ namespace MathForGames2D
 
         public override void Update(float deltaTime)
         {
-            int xDirection = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_A)) +
-                    Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_D));
+            float xDirection = 0;
+            float yDirection = 0;
+            bool xMovement = false;
+            bool yMovement = false;
 
-            int yDirection = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_W)) +
-                    Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_S));
 
-            Velocity = new Vector2(xDirection, yDirection);
-            Velocity = Velocity.Normalized * Speed;
+            if(Game.GetKeyDown((int)KeyboardKey.KEY_A))
+            {
+                xDirection -= Speed;
+                xMovement = true;
+            }
+            if(Game.GetKeyDown((int)KeyboardKey.KEY_D))
+            {
+                xDirection += Speed;
+                xMovement = true;
+
+            }
+
+            if (Game.GetKeyDown((int)KeyboardKey.KEY_W))
+            {
+                yDirection -= Speed;
+                yMovement = true;
+
+            }
+            if (Game.GetKeyDown((int)KeyboardKey.KEY_S))
+            {
+                yDirection += Speed;
+                yMovement = true;
+
+            }
+
+            
+
+            Vector2 movementDirection = new Vector2(xDirection, yDirection);
+            Velocity += movementDirection.Normalized * Speed;
 
             base.Update(deltaTime);
         }
+
+
 
         public override void Draw()
         {

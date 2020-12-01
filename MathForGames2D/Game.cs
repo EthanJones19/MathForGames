@@ -150,11 +150,11 @@ namespace MathForGames2D
             player.SetScale(1, 1);
             //Player player3 = new Player()
 
-            scene1.AddActor(actor);
+            //scene1.AddActor(actor);
             scene1.AddActor(player);
-            scene1.AddActor(enemy);
-            scene2.AddActor(player);
-            player.Speed = 5;
+            //scene1.AddActor(enemy);
+            //scene2.AddActor(player);
+            player.Speed = 0.5f;
 
             int startingSceneIndex = 0;
             startingSceneIndex = AddScene(scene1);

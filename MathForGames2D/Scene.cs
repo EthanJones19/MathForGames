@@ -111,7 +111,19 @@ namespace MathForGames2D
 
         private void CheckCollision()
         {
+            foreach (Actor actor in _actors)
+            {
+                foreach (Actor actor1 in _actors)
+                {
+                    if(actor == actor1)continue;
+                    if (actor._collisionRadius + actor1._collisionRadius == (actor.LocalPosition - actor1.LocalPosition).Magnitude)
+                    {
+                        actor.LocalPosition = new Vector2(999,999);
+                    }
+                }
+            }
 
+            
         }
 
         public virtual void Start()

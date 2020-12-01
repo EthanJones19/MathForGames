@@ -20,7 +20,8 @@ namespace MathForGames2D
         protected Actor _parent;
         protected Actor[] _children = new Actor[0];
         protected float _rotationAngle;
-        private float _collisionRadius;
+        public float _collisionRadius = 1;
+
 
         public bool Started { get; private set; }
 
@@ -41,12 +42,12 @@ namespace MathForGames2D
         {
             get
             {
-                return new Vector2(_localTransform.m13, _localTransform.m21);
+                return new Vector2(_localTransform.m13, _localTransform.m23);
             }
             set
             {
                 _translation.m13 = value.X;
-                _translation.m13 = value.Y;
+                _translation.m23 = value.Y;
             }
         }
 
@@ -210,7 +211,7 @@ namespace MathForGames2D
 
         public virtual void Update(float deltaTime)
         {
-            UpdateFacing();
+            //UpdateFacing();
             UpdateTransform();
             LocalPosition += _velocity * deltaTime;
         }
