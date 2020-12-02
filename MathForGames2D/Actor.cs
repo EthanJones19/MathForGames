@@ -218,13 +218,7 @@ namespace MathForGames2D
 
         public virtual void Draw()
         {
-            Raylib.DrawLine(
-                (int)(WorldTransform.X * 32),
-                (int)(WorldTransform.Y * 32),
-                (int)((WorldTransform.X + Forward.X) * 32),
-                (int)((WorldTransform.Y + Forward.Y) * 32),
-                Color.WHITE
-                );
+
             Console.ForegroundColor = _color;
 
             if (WorldTransform.X >= 0 && WorldTransform.X < Console.WindowWidth
