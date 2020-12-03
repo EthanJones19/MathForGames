@@ -20,7 +20,7 @@ namespace MathForGames2D
         protected Actor _parent;
         protected Actor[] _children = new Actor[0];
         protected float _rotationAngle;
-        public float _collisionRadius = 1;
+        protected float _collisionRadius = 1;
 
 
         public bool Started { get; private set; }
@@ -37,6 +37,17 @@ namespace MathForGames2D
                 LookAt(lookPosition);
             }
         }
+
+        public float CollisionRadius
+        {
+            get
+            {
+                return _collisionRadius;
+            }
+
+        }
+
+
 
         public Vector2 LocalPosition
         {
@@ -170,14 +181,10 @@ namespace MathForGames2D
             Rotate(angle);
         }
 
-        public bool CheckCollision(Actor other)
-        {
-            return false;
-        }
-
         public virtual void OnCollision(Actor other)
         {
-
+            //other.SetRotation(2);
+            //Scene.RemoveActor(other);
         }
 
         public void SetScale(float x, float y)

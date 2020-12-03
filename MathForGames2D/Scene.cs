@@ -116,9 +116,9 @@ namespace MathForGames2D
                 foreach (Actor actor1 in _actors)
                 {
                     if(actor == actor1)continue;
-                    if (actor._collisionRadius + actor1._collisionRadius == (actor.LocalPosition - actor1.LocalPosition).Magnitude)
+                    if (actor.CollisionRadius + actor1.CollisionRadius >= (actor.LocalPosition - actor1.LocalPosition).Magnitude)
                     {
-                        actor.LocalPosition = new Vector2(999,999);
+                        actor.OnCollision(actor1);
                     }
                 }
             }

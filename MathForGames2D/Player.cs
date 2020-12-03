@@ -74,10 +74,19 @@ namespace MathForGames2D
             Vector2 movementDirection = new Vector2(xDirection, yDirection);
             Velocity += movementDirection.Normalized * Speed;
 
+
+            if(! xMovement && ! yMovement)
+            {
+                _velocity = new Vector2(0, 0);
+            }
+
             base.Update(deltaTime);
         }
 
-
+        public override void OnCollision(Actor other)
+        {
+            
+        }
 
         public override void Draw()
         {

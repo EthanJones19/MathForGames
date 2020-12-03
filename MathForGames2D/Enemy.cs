@@ -12,7 +12,7 @@ namespace MathForGames2D
         {
             private Actor _target;
             private Color _alertColor;
-            private Sprite _sprite;
+            protected Sprite _sprite;
 
 
             public Actor Target
@@ -24,14 +24,13 @@ namespace MathForGames2D
             public Enemy(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
                 : base(x, y, icon, color)
             {
-                _sprite = new Sprite("Images/enemy.png");
+
             }
 
             public Enemy(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
                 : base(x, y, rayColor, icon, color)
             {
-                _sprite = new Sprite("Images/enemy.png");
-                _alertColor = Color.RED;
+
             }
 
 
@@ -72,6 +71,10 @@ namespace MathForGames2D
                 base.Draw();
             }
 
+            public override void OnCollision(Actor other)
+            {
+                LocalPosition = new Vector2(30, 10);
+            }
 
 
         }
