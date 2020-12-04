@@ -129,13 +129,7 @@ namespace MathForGames2D
 
             
         }
-
-
-        private void OnCollision()
-        {
-            
-        }
-
+               
         public virtual void Start()
         {
             Started = true;

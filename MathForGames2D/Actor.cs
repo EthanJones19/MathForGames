@@ -8,7 +8,7 @@ namespace MathForGames2D
 {
     class Actor
     {
-        //Sets of Variables
+        //Set of Variables
         protected char _icon = ' ';
         protected Matrix3 _localTransform;
         protected Vector2 _velocity;
@@ -26,7 +26,7 @@ namespace MathForGames2D
         //Gets and Sets the start
         public bool Started { get; private set; }
 
-        //Sets 
+        //Sets positions of global and local forward
         public Vector2 Forward
         {
             get
@@ -40,6 +40,7 @@ namespace MathForGames2D
             }
         }
 
+        //Sets the collision radius
         public float CollisionRadius
         {
             get
@@ -50,7 +51,7 @@ namespace MathForGames2D
         }
 
 
-
+        //Sets local position
         public Vector2 LocalPosition
         {
             get
@@ -64,7 +65,7 @@ namespace MathForGames2D
             }
         }
 
-
+        //Sets a WorldTransform
         public Vector2 WorldTransform
         {
             get
@@ -204,16 +205,7 @@ namespace MathForGames2D
 
 
         }
-
-
-
-        private void UpdateFacing()
-        {
-            if (_velocity.Magnitude <= 0)
-                return;
-            Forward = Velocity.Normalized;
-        }
-
+                              
         public virtual void Start()
         {
             Started = true;
@@ -221,7 +213,6 @@ namespace MathForGames2D
 
         public virtual void Update(float deltaTime)
         {
-            //UpdateFacing();
             UpdateTransform();
             LocalPosition += _velocity * deltaTime;
         }
