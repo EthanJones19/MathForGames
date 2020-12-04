@@ -21,4 +21,4 @@
 
 1. Sprites:
 
-|![User Interface Gif] (https://imgur.com/qGVabJv)
+|![User Interface Images] (https://imgur.com/qGVabJv)
