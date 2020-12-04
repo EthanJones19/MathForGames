@@ -8,6 +8,7 @@ namespace MathForGames2D
 {
     class Actor
     {
+        //Sets of Variables
         protected char _icon = ' ';
         protected Matrix3 _localTransform;
         protected Vector2 _velocity;
@@ -22,9 +23,10 @@ namespace MathForGames2D
         protected float _rotationAngle;
         protected float _collisionRadius = 1;
 
-
+        //Gets and Sets the start
         public bool Started { get; private set; }
 
+        //Sets 
         public Vector2 Forward
         {
             get

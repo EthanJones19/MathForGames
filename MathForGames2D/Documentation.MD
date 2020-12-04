@@ -9,7 +9,7 @@
 1. Description of Problem:
     - **Name**:CrippleDragon
 
-    - **Problem Statement**: Clear the requirements on assignment using C#
+    - **This tech demonstrates the uses of Raylib_cs and MathLibrary extensively.
 
 2. Input Information:
     - Using the letters on the keyboard for moving.
@@ -19,6 +19,8 @@
 
 ## II. Design
 
-1. Sprites:
+1. Object Information:
 
-|![User Interface Images] (https://imgur.com/qGVabJv)
+**File**: Actor.cs
+
+**Attributes**:
