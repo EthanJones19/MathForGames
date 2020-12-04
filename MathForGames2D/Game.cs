@@ -114,12 +114,13 @@ namespace MathForGames2D
 
         }
 
-
+        
 
         public Game()
         {
             _scenes = new Scene[0];
         }
+
 
         //Called when the game begins. Use this for initialization.
         public void Start()
@@ -151,7 +152,7 @@ namespace MathForGames2D
             background.SetTranslation(new Vector2(10, 10));
             cripple.SetTranslation(new Vector2(29, 11));
             dragon.SetTranslation(new Vector2(30, 10));
-            oneshot.SetTranslation(new Vector2(10, 11));
+            oneshot.SetTranslation(new Vector2(14, 14));
             //player.AddChild(enemy);
             player.SetScale(1, 1);
             background.SetScale(50, 30);
@@ -167,7 +168,8 @@ namespace MathForGames2D
             scene1.AddActor(dragon);
             scene1.AddActor(oneshot);
 
-            player.AddChild(dragon);
+
+            player.AddChild(oneshot);
 
             player.Speed = 0.1f;
 
@@ -177,6 +179,7 @@ namespace MathForGames2D
             SetCurrentScene(startingSceneIndex);
 
         }
+
 
 
         //Called every frame.

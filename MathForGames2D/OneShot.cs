@@ -11,6 +11,7 @@ namespace MathForGames2D
         private Sprite _sprite;
         private float _speed = 1;
 
+
         public OneShot(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, icon, color)
         {
@@ -27,9 +28,14 @@ namespace MathForGames2D
 
         public override void Draw()
         {
-            _sprite.Draw(_localTransform);
+            _sprite.Draw(_globalTransform);
             base.Draw();
         }
+
+
+
+
+
 
 
 

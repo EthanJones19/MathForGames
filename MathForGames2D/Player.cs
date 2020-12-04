@@ -102,6 +102,7 @@ namespace MathForGames2D
 
         public override void Draw()
         {
+
             _sprite.Draw(_localTransform);
             base.Draw();
         }
