@@ -6,20 +6,22 @@ using Raylib_cs;
 
 namespace MathForGames2D
 {
-    class Background : Actor
+    class OneShot : Actor
     {
         private Sprite _sprite;
+        private float _speed = 1;
 
-        public Background(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
+        public OneShot(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, icon, color)
         {
-            _sprite = new Sprite("Images/background.png");
+            _sprite = new Sprite("Images/OneShot.png");
+            
         }
 
-        public Background(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
+        public OneShot(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, rayColor, icon, color)
         {
-            _sprite = new Sprite("Images/background.png");
+            _sprite = new Sprite("Images/OneShot.png");
         }
 
 
@@ -28,5 +30,8 @@ namespace MathForGames2D
             _sprite.Draw(_localTransform);
             base.Draw();
         }
+
+
+
     }
 }

@@ -115,7 +115,11 @@ namespace MathForGames2D
             {
                 foreach (Actor actor1 in _actors)
                 {
-                    if(actor == actor1)continue;
+
+                    if (actor == actor1)continue;
+
+                    if (actor is Background || actor1 is Background) continue;
+
                     if (actor.CollisionRadius + actor1.CollisionRadius >= (actor.LocalPosition - actor1.LocalPosition).Magnitude)
                     {
                         actor.OnCollision(actor1);
@@ -123,6 +127,12 @@ namespace MathForGames2D
                 }
             }
 
+            
+        }
+
+
+        private void OnCollision()
+        {
             
         }
 

@@ -85,6 +85,18 @@ namespace MathForGames2D
 
         public override void OnCollision(Actor other)
         {
+            if (other is OneShot)
+            {
+                return;
+            }
+
+
+            _velocity *= -1.1f;
+
+            if (_velocity.Magnitude > _speed * 2)
+            {
+                _velocity = new Vector2(0.5f, 0.5f);
+            }
             
         }
 

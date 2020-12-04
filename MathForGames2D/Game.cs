@@ -139,31 +139,36 @@ namespace MathForGames2D
             //Creates two actors to add to our scene
             Actor actor = new Actor(0, 0, Color.GREEN, '■', ConsoleColor.Green);
             actor.Velocity.X = 1;
-            CupEnemy cup = new CupEnemy(0, 1, Color.GREEN, '■', ConsoleColor.Green);
             Player player = new Player(0, 1, Color.RED, '@', ConsoleColor.Red);
             Background background = new Background(0, 0, Color.GREEN, '9', ConsoleColor.Green);
             Cripple cripple = new Cripple(0, 1, Color.GREEN, '8', ConsoleColor.Green);
             Dragon dragon = new Dragon(5, 0, Color.GREEN, '7', ConsoleColor.Green);
+            OneShot oneshot = new OneShot(0, 0, Color.BLUE, '5', ConsoleColor.Green);
 
             actor.Velocity.X = 1;
             //enemy.Target = player;
-            cup.SetTranslation(new Vector2(11, 10));
             player.SetTranslation(new Vector2(10, 10));
             background.SetTranslation(new Vector2(10, 10));
             cripple.SetTranslation(new Vector2(29, 11));
             dragon.SetTranslation(new Vector2(30, 10));
+            oneshot.SetTranslation(new Vector2(10, 11));
             //player.AddChild(enemy);
             player.SetScale(1, 1);
             background.SetScale(50, 30);
             cripple.SetScale(2, 2);
             dragon.SetScale(5, 5);
+            oneshot.SetScale(1, 1);
+
 
             //scene1.AddActor(actor);
             scene1.AddActor(background);
             scene1.AddActor(player);
-            scene1.AddActor(cup);
             scene1.AddActor(cripple);
             scene1.AddActor(dragon);
+            scene1.AddActor(oneshot);
+
+            player.AddChild(dragon);
+
             player.Speed = 0.1f;
 
             int startingSceneIndex = 0;

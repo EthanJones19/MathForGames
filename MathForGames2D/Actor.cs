@@ -183,8 +183,7 @@ namespace MathForGames2D
 
         public virtual void OnCollision(Actor other)
         {
-            //other.SetRotation(2);
-            //Scene.RemoveActor(other);
+            
         }
 
         public void SetScale(float x, float y)
@@ -200,6 +199,8 @@ namespace MathForGames2D
                 _globalTransform = _parent._globalTransform * _localTransform;
             else
                 _globalTransform = Game.GetCurrentScene().World * _localTransform;
+
+
         }
 
 

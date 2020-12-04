@@ -7,11 +7,9 @@ using Raylib_cs;
 namespace MathForGames2D
 {
     
-    
         class Enemy : Actor
         {
             private Actor _target;
-            private Color _alertColor;
             protected Sprite _sprite;
 
 
@@ -69,7 +67,9 @@ namespace MathForGames2D
             {
                 _sprite.Draw(_localTransform);
                 base.Draw();
+
             }
+
 
             public override void OnCollision(Actor other)
             {
