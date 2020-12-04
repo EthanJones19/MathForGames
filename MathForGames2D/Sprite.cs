@@ -8,9 +8,10 @@ namespace MathForGames2D
 {
     class Sprite
     {
+        //Sets a variable
         private Texture2D _texture;
 
-
+        //Adds width to sprites
         public int Width
         {
             get
@@ -23,7 +24,7 @@ namespace MathForGames2D
             }
         }
 
-
+        //Adds height to sprites
         public int Height
         {
             get
@@ -36,19 +37,19 @@ namespace MathForGames2D
             }
         }
 
-
+        //Adds textures to sprites
         public Sprite(Texture2D texture)
         {
             _texture = texture;
         }
 
-
+        //Adds a path 
         public Sprite(string path)
         {
             _texture = Raylib.LoadTexture(path);
         }
 
-
+        //Draws the sprites
         public void Draw(Matrix3 transform)
         {
 

@@ -65,7 +65,7 @@ namespace MathForGames2D
             }
         }
 
-        //Sets a WorldTransform
+        //Sets a world transform
         public Vector2 WorldTransform
         {
             get
@@ -75,6 +75,7 @@ namespace MathForGames2D
 
         }
 
+        //Sets velocity
         public Vector2 Velocity
         {
             get
@@ -87,6 +88,7 @@ namespace MathForGames2D
             }
         }
 
+        //Sets Actor's values
         public Actor(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
         {
             _raycolor = Color.WHITE;
@@ -97,6 +99,7 @@ namespace MathForGames2D
             _color = color;
         }
 
+        //Sets Actor's values 
         public Actor(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : this(x, y, icon, color)
         {
@@ -104,6 +107,7 @@ namespace MathForGames2D
             _raycolor = rayColor;
         }
 
+        //Adds a child 
         public void AddChild(Actor child)
         {
             Actor[] tempArray = new Actor[_children.Length + 1];
@@ -118,6 +122,7 @@ namespace MathForGames2D
             child._parent = this;
         }
 
+        //Removes the child
         public bool RemoveChild(Actor child)
         {
             bool childRemoved = false;
@@ -149,22 +154,25 @@ namespace MathForGames2D
 
 
 
-
+        //Sets translation
         public void SetTranslation(Vector2 position)
         {
             _translation = Matrix3.CreateTranslation(position);
         }
 
+        //Sets rotation
         public void SetRotation(float radians)
         {
             _rotation = Matrix3.CreateRotation(radians);
         }
 
+        //Gives rotation
         public void Rotate(float radians)
         {
             _rotation *= Matrix3.CreateRotation(radians);
         }
-
+        
+        //Sets the dirction to look in a position
         public void LookAt(Vector2 position)
         {
             Vector2 direction = (position - LocalPosition).Normalized;
@@ -184,16 +192,19 @@ namespace MathForGames2D
             Rotate(angle);
         }
 
+        //Sets up collision
         public virtual void OnCollision(Actor other)
         {
             
         }
 
+        //Sets the scale
         public void SetScale(float x, float y)
         {
             _scale = Matrix3.CreateScale(new Vector2(x, y));
         }
 
+        //Updates the transformation
         private void UpdateTransform()
         {
             _localTransform = _translation * _rotation * _scale;
@@ -205,18 +216,21 @@ namespace MathForGames2D
 
 
         }
-                              
+
+        //Starts Actor
         public virtual void Start()
         {
             Started = true;
         }
 
+        //Updates Actor
         public virtual void Update(float deltaTime)
         {
             UpdateTransform();
             LocalPosition += _velocity * deltaTime;
         }
 
+        //Draws the Actor
         public virtual void Draw()
         {
 
@@ -232,6 +246,7 @@ namespace MathForGames2D
             Console.ForegroundColor = Game.DefaultColor;
         }
 
+        //Ends Actor
         public virtual void End()
         {
             Started = false;

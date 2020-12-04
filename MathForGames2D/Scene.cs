@@ -8,21 +8,26 @@ namespace MathForGames2D
 {
     class Scene
     {
+        //Sets teh variables
         private Actor[] _actors;
         private Matrix3 _transform = new Matrix3();
 
+        //Sets a world in scenes
         public Matrix3 World
         {
             get { return _transform; }
         }
 
+        //Gets the start and sets it private
         public bool Started { get; private set; }
 
+        //Add new scene
         public Scene()
         {
             _actors = new Actor[0];
         }
 
+        //Adds new Actor to scene
         public void AddActor(Actor actor)
         {
             //Creating a new array with a size one greater than our old array
@@ -38,6 +43,7 @@ namespace MathForGames2D
             _actors = appendedArray;
         }
 
+        //Removes actor from scenes
         public bool RemoveActor(int index)
         {
             //Check to see if the index is outside the bounds of our array
@@ -75,6 +81,7 @@ namespace MathForGames2D
             return actorRemoved;
         }
 
+        //Removes the actor from scene
         public bool RemoveActor(Actor actor)
         {
             //Check to see if the actor was null
@@ -109,6 +116,7 @@ namespace MathForGames2D
             return actorRemoved;
         }
 
+        //Checks collision in scene
         private void CheckCollision()
         {
             foreach (Actor actor in _actors)
@@ -129,12 +137,14 @@ namespace MathForGames2D
 
             
         }
-               
+
+        //Starts the scenes
         public virtual void Start()
         {
             Started = true;
         }
 
+        //Updates scenes
         public virtual void Update(float deltaTime)
         {
             for (int i = 0; i < _actors.Length; i++)
@@ -147,6 +157,7 @@ namespace MathForGames2D
             CheckCollision();
         }
 
+        //Draws Scene
         public virtual void Draw()
         {
             for (int i = 0; i < _actors.Length; i++)
@@ -155,6 +166,7 @@ namespace MathForGames2D
             }
         }
 
+        //Ends scene
         public virtual void End()
         {
             for (int i = 0; i < _actors.Length; i++)

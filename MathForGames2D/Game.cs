@@ -8,11 +8,13 @@ namespace MathForGames2D
 {
     class Game
     {
+        //Sets the variables
         private static bool _gameOver = false;
         private static Scene[] _scenes;
         private static int _currentSceneIndex;
         public static ConsoleColor DefaultColor { get; set; } = ConsoleColor.White;
 
+        //Gets current scene's index
         public static int CurrentSceneIndex
         {
             get
@@ -21,12 +23,13 @@ namespace MathForGames2D
             }
         }
 
-        //Static function used to set game over without an instance of game.
+        //Sets up a game over
         public static void SetGameOver(bool value)
         {
             _gameOver = value;
         }
 
+        //Gets the scene of the index
         public static Scene GetScene(int index)
         {
             if (index < 0 || index >= _scenes.Length)
@@ -34,13 +37,14 @@ namespace MathForGames2D
 
             return _scenes[index];
         }
-
+        
+        //Gets the current scene
         public static Scene GetCurrentScene()
         {
             return _scenes[_currentSceneIndex];
         }
 
-
+        //Adds a scene
         public static int AddScene(Scene scene)
         {
             if (scene == null)
@@ -60,17 +64,20 @@ namespace MathForGames2D
             return index;
         }
 
+
+        //Gets the key if down
         public static bool GetKeyDown(int key)
         {
             return Raylib.IsKeyDown((KeyboardKey)key);
         }
 
+        //Gets the key if key been pressed
         public static bool GetKeyPressed(int key)
         {
             return Raylib.IsKeyPressed((KeyboardKey)key);
         }
 
-
+        //Removes a Scene
         public static bool RemoveScene(Scene scene)
         {
             if (scene == null)
@@ -102,6 +109,7 @@ namespace MathForGames2D
             return sceneRemoved;
         }
 
+        //Sets a current scene index
         public static void SetCurrentScene(int index)
         {
             if (index < 0 || index >= _scenes.Length)
@@ -115,7 +123,7 @@ namespace MathForGames2D
         }
 
         
-
+        //Game will open up in scenes
         public Game()
         {
             _scenes = new Scene[0];
@@ -147,13 +155,11 @@ namespace MathForGames2D
             OneShot oneshot = new OneShot(0, 0, Color.BLUE, '5', ConsoleColor.Green);
 
             actor.Velocity.X = 1;
-            //enemy.Target = player;
             player.SetTranslation(new Vector2(10, 10));
             background.SetTranslation(new Vector2(10, 10));
             cripple.SetTranslation(new Vector2(29, 11));
             dragon.SetTranslation(new Vector2(30, 10));
             oneshot.SetTranslation(new Vector2(14, 14));
-            //player.AddChild(enemy);
             player.SetScale(1, 1);
             background.SetScale(50, 30);
             cripple.SetScale(2, 2);
@@ -161,14 +167,13 @@ namespace MathForGames2D
             oneshot.SetScale(1, 1);
 
 
-            //scene1.AddActor(actor);
             scene1.AddActor(background);
             scene1.AddActor(player);
             scene1.AddActor(cripple);
             scene1.AddActor(dragon);
             scene1.AddActor(oneshot);
 
-
+            
             player.AddChild(oneshot);
 
             player.Speed = 0.1f;

@@ -6,9 +6,10 @@ namespace MathLibrary
 {
     public class Matrix3
     {
+        //Sets the matrix3
         public float m11, m12, m13, m21, m22, m23, m31, m32, m33;
 
-
+        //Sets the values
         public Matrix3()
         {
             m11 = 1; m12 = 0; m13 = 0;
@@ -16,6 +17,7 @@ namespace MathLibrary
             m31 = 0; m32 = 0; m33 = 1;
         }
 
+        //Constructor
         public Matrix3(float m11, float m12, float m13,
                        float m21, float m22, float m23,
                        float m31, float m32, float m33)
@@ -25,6 +27,7 @@ namespace MathLibrary
             this.m31 = m31; this.m32 = m32; this.m33 = m33;
         }
 
+        //Operates additions
         public static Matrix3 operator +(Matrix3 lhs, Matrix3 rhs)
         {
             return new Matrix3
@@ -36,6 +39,7 @@ namespace MathLibrary
 
         }
 
+        //Craetes the rotation
         public static Matrix3 CreateRotation(float radians)
         {
             return new Matrix3
@@ -46,6 +50,7 @@ namespace MathLibrary
                 );
         }
 
+        //Creates the translation
         public static Matrix3 CreateTranslation(Vector2 position)
         {
             return new Matrix3
@@ -56,6 +61,7 @@ namespace MathLibrary
                 );
         }
 
+        //Creates the scale
         public static Matrix3 CreateScale(Vector2 scale)
         {
             return new Matrix3
@@ -67,7 +73,7 @@ namespace MathLibrary
         }
 
 
-
+        //Operates the subtractions
         public static Matrix3 operator -(Matrix3 lhs, Matrix3 rhs)
         {
             return new Matrix3
@@ -79,6 +85,7 @@ namespace MathLibrary
 
         }
         
+
         public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
         {
             return new Matrix3

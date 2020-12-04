@@ -9,60 +9,25 @@ namespace MathForGames2D
     
         class Enemy : Actor
         {
+            //Sets the variables
             private Actor _target;
             protected Sprite _sprite;
-
-
-            public Actor Target
-            {
-                get { return _target; }
-                set { _target = value; }
-            }
-
+        
+            //Constructor
             public Enemy(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
                 : base(x, y, icon, color)
             {
 
             }
-
+            
+            //Constructor
             public Enemy(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
                 : base(x, y, rayColor, icon, color)
             {
 
             }
-
-
-
-            public bool CheckTargetInSight(float maxAngle, float maxDistance)
-            {
-                if (Target == null)
-                    return false;
-
-                Vector2 direction = Vector2.Normalize(Target.LocalPosition - LocalPosition);
-
-                float distance = direction.Magnitude;
-
-                float angle = (float)Math.Acos(Vector2.DotProduct(Forward, direction.Normalized));
-
-                if (angle <= maxAngle && distance <= maxDistance)
-                    return true;
-
-                return false;
-            }
-
-            public override void Update(float deltaTime)
-            {
-                if (CheckTargetInSight(1.5f, 5))
-                {
-                    _raycolor = Color.RED;
-                }
-                else
-                {
-                    _raycolor = Color.BLUE;
-                }
-                base.Update(deltaTime);
-            }
-
+            
+            //Draws the Enemy
             public override void Draw()
             {
                 _sprite.Draw(_localTransform);
@@ -70,7 +35,7 @@ namespace MathForGames2D
 
             }
 
-
+            //Adds collision to Enemy
             public override void OnCollision(Actor other)
             {
                 LocalPosition = new Vector2(30, 10);
